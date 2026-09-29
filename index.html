@@ -3,135 +3,327 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrega SSL</title>
+  <title>Islem Elidet Ceron Valdes</title>
   <style>
+    :root {
+      --morado: #a855f7;
+      --rosa: #ec4899;
+      --rosa-claro: #f472b6;
+      --azul: #38bdf8;
+      --azul-claro: #7dd3fc;
+      --gris: #a1a1aa;
+      --gris-claro: #e4e4e7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+      background: #000000;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--gris-claro);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .glow-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.18), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.18), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.14), transparent 45%);
+    }
+
+    .wave {
+      position: absolute;
+      left: -50%;
+      width: 200%;
+      height: 40%;
+      bottom: -10%;
+      opacity: 0.5;
+      animation: drift 14s linear infinite;
+    }
+
+    .wave.w2 {
+      bottom: -16%;
+      opacity: 0.35;
+      animation-duration: 20s;
+      animation-direction: reverse;
+    }
+
+    .wave.w3 {
+      bottom: -22%;
+      opacity: 0.22;
+      animation-duration: 26s;
+    }
+
+    .wave path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    .wave.w1 path { color: var(--azul); }
+    .wave.w2 path { color: var(--morado); }
+    .wave.w3 path { color: var(--rosa); }
+
+    .wave.top {
+      bottom: auto;
+      animation-name: driftTop;
+    }
+
+    .wave.top.w1 { top: -10%; }
+    .wave.top.w2 { top: -16%; }
+    .wave.top.w3 { top: -22%; }
+
+    .wave-side {
+      position: absolute;
+      top: -50%;
+      height: 200%;
+      width: 140px;
+      opacity: 0.3;
+      animation: driftV 18s linear infinite;
+    }
+
+    .wave-side path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    .wave-side-left {
+      left: 20px;
+      color: var(--morado);
+    }
+
+    .wave-side-right {
+      right: 20px;
+      color: var(--azul);
+      animation-direction: reverse;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes driftTop {
+      from { transform: scaleY(-1) translateX(0); }
+      to { transform: scaleY(-1) translateX(-50%); }
+    }
+
+    @keyframes driftV {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50%); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--morado), var(--rosa), var(--azul));
+      box-shadow:
+        0 0 25px rgba(168, 85, 247, 0.6),
+        0 0 50px rgba(236, 72, 153, 0.35),
+        0 0 30px rgba(56, 189, 248, 0.35);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #0a0a0a;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0f172a;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      color: #e2e8f0;
+      color: var(--azul-claro);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
-    main {
-      text-align: center;
-      padding: 2rem;
-      width: 100%;
-      max-width: 360px;
-    }
-    .lock {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
+
     h1 {
-      margin: 0 0 0.75rem;
-      font-size: 1.5rem;
+      margin: 0 0 0.5rem;
+      font-size: 2.25rem;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, var(--morado), var(--rosa), var(--azul));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
     }
-    p {
-      margin: 0.5rem 0;
-      color: #94a3b8;
-      font-size: 0.95rem;
+
+    .rol {
+      margin: 0;
+      color: var(--gris);
+      font-size: 1.05rem;
     }
-    .card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 1.5rem;
+
+    .divider {
+      width: 90px;
+      height: 3px;
+      margin: 2rem auto;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--morado), var(--rosa), var(--azul));
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
       margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #0a0a0a;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 14px;
+      padding: 1.5rem;
       text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    label {
-      display: block;
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--azul);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+    }
+
+    .card h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+      color: var(--azul-claro);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      margin: 0.4rem 0;
+      color: var(--gris-claro);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .card .label {
+      color: var(--gris);
       font-size: 0.85rem;
-      color: #94a3b8;
-      margin-bottom: 0.3rem;
     }
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 0.6rem 0.75rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #334155;
-      background: #0f172a;
-      color: #e2e8f0;
-      font-size: 1rem;
-    }
-    button {
-      width: 100%;
-      padding: 0.65rem;
-      border: none;
-      border-radius: 8px;
-      background: #2563eb;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #1d4ed8;
-    }
-    .error {
-      color: #f87171;
+
+    .tag {
+      display: inline-block;
+      margin: 0.3rem 0.4rem 0 0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
       font-size: 0.85rem;
-      margin-bottom: 0.75rem;
-      display: none;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: var(--azul-claro);
+      background: rgba(56, 189, 248, 0.08);
     }
-    .hidden {
-      display: none;
+
+    footer {
+      margin-top: 3rem;
+      color: #52525b;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
-  <main id="login">
-    <div class="lock">&#128274;</div>
-    <h1>Iniciar sesi&oacute;n</h1>
-    <p>Conexi&oacute;n cifrada mediante SSL/TLS.</p>
-    <div class="card">
-      <div class="error" id="error">Usuario o contrase&ntilde;a incorrectos.</div>
-      <label for="user">Usuario</label>
-      <input type="text" id="user" autocomplete="username">
-      <label for="pass">Contrase&ntilde;a</label>
-      <input type="password" id="pass" autocomplete="current-password">
-      <button id="btn">Entrar</button>
+  <div class="glow-bg">
+    <svg class="wave w1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,192 C120,240 240,288 480,272 C720,256 840,160 1080,144 C1320,128 1380,192 1440,208 L1440,320 L0,320 Z"></path>
+    </svg>
+    <svg class="wave w2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,224 C160,160 320,112 520,128 C720,144 880,256 1080,256 C1280,256 1380,192 1440,176 L1440,320 L0,320 Z"></path>
+    </svg>
+    <svg class="wave w3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,240 C200,288 360,288 560,224 C760,160 920,128 1120,160 C1320,192 1400,224 1440,224 L1440,320 L0,320 Z"></path>
+    </svg>
+
+    <svg class="wave top w1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,192 C120,240 240,288 480,272 C720,256 840,160 1080,144 C1320,128 1380,192 1440,208 L1440,320 L0,320 Z"></path>
+    </svg>
+    <svg class="wave top w2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,224 C160,160 320,112 520,128 C720,144 880,256 1080,256 C1280,256 1380,192 1440,176 L1440,320 L0,320 Z"></path>
+    </svg>
+    <svg class="wave top w3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,240 C200,288 360,288 560,224 C760,160 920,128 1120,160 C1320,192 1400,224 1440,224 L1440,320 L0,320 Z"></path>
+    </svg>
+
+    <svg class="wave-side wave-side-left" viewBox="0 0 320 1440" preserveAspectRatio="none">
+      <path d="M160,0 C40,120 280,240 160,360 C40,480 280,600 160,720 C40,840 280,960 160,1080 C40,1200 280,1320 160,1440"></path>
+    </svg>
+    <svg class="wave-side wave-side-right" viewBox="0 0 320 1440" preserveAspectRatio="none">
+      <path d="M160,0 C40,120 280,240 160,360 C40,480 280,600 160,720 C40,840 280,960 160,1080 C40,1200 280,1320 160,1440"></path>
+    </svg>
+  </div>
+
+  <main>
+    <div class="avatar">
+      <div class="avatar-inner">I.C.</div>
     </div>
+
+    <h1>Islem Elidet Ceron Valdes</h1>
+    <p class="rol">Coordinadora de viajes · Estudiante de desarrollo web</p>
+
+    <div class="divider"></div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Sobre mí</h2>
+        <p><span class="label">Edad:</span> 20 años</p>
+        <p><span class="label">Cumpleaños:</span> 13 de febrero de 2006</p>
+      </div>
+
+      <div class="card">
+        <h2>Lo que hago</h2>
+        <p>Actualmente trabajo en una empresa como coordinadora de viajes.</p>
+        <p>Estudio desarrollo web.</p>
+      </div>
+
+      <div class="card">
+        <h2>Me gusta</h2>
+        <span class="tag">Bailar</span>
+        <span class="tag">La playa</span>
+        <span class="tag">Viajar</span>
+      </div>
+
+      <div class="card full">
+        <h2>Desarrollo web</h2>
+        <p>Desarrolladora full stack, del backend al frontend. Construyo interfaces modernas y responsivas del lado del cliente, y del lado del servidor diseño APIs, manejo bases de datos, autenticación y lógica de negocio.</p>
+        <span class="tag">Frontend</span>
+        <span class="tag">Backend</span>
+        <span class="tag">Bases de datos</span>
+        <span class="tag">APIs</span>
+      </div>
+    </div>
+
+
   </main>
-
-  <main id="panel" class="hidden">
-    <div class="lock">&#9989;</div>
-    <h1>Bienvenido</h1>
-    <p>Has iniciado sesi&oacute;n correctamente.</p>
-    <p>Entrega escolar &mdash; demostraci&oacute;n de certificado SSL.</p>
-  </main>
-
-  <script>
-    var USER = "admin";
-    var PASS = "1234";
-
-    var login = document.getElementById("login");
-    var panel = document.getElementById("panel");
-    var error = document.getElementById("error");
-    var userInput = document.getElementById("user");
-    var passInput = document.getElementById("pass");
-    var btn = document.getElementById("btn");
-
-    function doLogin() {
-      if (userInput.value === USER && passInput.value === PASS) {
-        login.classList.add("hidden");
-        panel.classList.remove("hidden");
-        error.style.display = "none";
-      } else {
-        error.style.display = "block";
-        passInput.value = "";
-      }
-    }
-
-    btn.addEventListener("click", doLogin);
-    passInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") doLogin();
-    });
-  </script>
 </body>
 </html>
